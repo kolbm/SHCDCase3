@@ -9,13 +9,16 @@ def load_data():
 
 df = load_data()
 
+# Extract unique location codes for the dropdown menu
+location_codes = sorted(df["Location Code"].unique())
+
 # Streamlit UI
 st.title("Case File Paragraph Lookup")
 
 st.write("Enter a Location Code and Entry Number to retrieve the corresponding paragraph.")
 
 # User input fields
-location_code = st.text_input("Location Code", "")
+location_code = st.selectbox("Location Code", location_codes)
 entry_number = st.number_input("Entry Number", min_value=0, step=1, format="%d")
 
 # Search for the corresponding paragraph
