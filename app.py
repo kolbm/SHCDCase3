@@ -1,9 +1,27 @@
 import streamlit as st
 import pandas as pd
+import base64
 
 # Load the dataset from CSV
 file_path = "Complete_Case_Database.csv"
 case_data = pd.read_csv(file_path)
+
+# Set background image
+def set_bg_from_url(url):
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url({url});
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Apply background image
+set_bg_from_url("https://wallpapers.com/images/featured/old-paper-w3ydso7e9qtan8er.jpg")
 
 # Streamlit UI
 st.title("Case Lookup Application")
