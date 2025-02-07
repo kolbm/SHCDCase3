@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os
+import base64
 
 # Load the CSV file
 @st.cache_data
@@ -25,15 +26,29 @@ df["Location"] = df["Location Code"].map(location_mapping)
 # Extract unique location codes for the dropdown menu
 location_codes = sorted(df["Location Code"].unique())
 
+# Function to encode an image as base64
+@st.cache_data
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
+background_image_path = "wordoftheoracle_A_Victorian__Holmsian_scene_appearing_on_wall_214710dc-9ce4-4c9f-8903-7388a8755311_0.png"
+if os.path.exists(background_image_path):
+    base64_bg = get_base64_image(background_image_path)
+    background_css = f"""
+    <style>
+        body {{
+            background-image: url("data:image/png;base64,{base64_bg}");
+            background-size: cover;
+        }}
+    </style>
+    """
+    st.markdown(background_css, unsafe_allow_html=True)
+
 # Streamlit UI Styling
 st.markdown(
     """
     <style>
-        body {
-            background-image: url('wordoftheoracle_A_Victorian__Holmsian_scene_appearing_on_wall_214710dc-9ce4-4c9f-8903-7388a8755311_0.png');
-            background-size: cover;
-            font-family: 'Times New Roman', serif;
-        }
         .stTitle {
             font-size: 40px !important;
             color: #4b2e1e;
@@ -139,16 +154,6 @@ if st.button("Find Paragraph", key="find_paragraph_button", help="Retrieve the m
         
         st.subheader("Matching Paragraph")
         st.write(f"<p style='font-size:22px; font-family: Times New Roman;'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
-        
-        # Display image for SW 15 if the file exists
-        sw15_image = "Screenshot 2025-02-07 090927.png"
-        if location_code == "SW" and entry_number == 15 and os.path.exists(sw15_image):
-            st.image(sw15_image, caption="Relevant Case Image")
-        
-        # Display image for NW 35 if the file exists
-        nw35_image = "Screenshot 2025-02-07 141325.png"
-        if location_code == "NW" and entry_number == 35 and os.path.exists(nw35_image):
-            st.image(nw35_image, caption="Relevant Case Image")
     else:
         st.error("No matching entry found. Please check the Location Code and Entry Number.")
 st.markdown("</div>", unsafe_allow_html=True)
