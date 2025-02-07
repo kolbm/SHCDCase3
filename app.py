@@ -128,7 +128,7 @@ for row in keypad_buttons:
         if button:
             with cols[i]:
                 if st.button(button, key=f"btn_{button}"):
-                    update_entry_number(button) 
+                    update_entry_number(button)
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Clear button
@@ -154,6 +154,15 @@ if st.button("Find Paragraph", key="find_paragraph_button", help="Retrieve the m
         
         st.subheader("Matching Paragraph")
         st.write(f"<p class='narrative-text'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
+        
+        # Display images for specific entries
+        image_mapping = {
+            ("SW", 15): "Screenshot 2025-02-07 090927.png",
+            ("NW", 35): "Screenshot 2025-02-07 141325.png"
+        }
+        image_path = image_mapping.get((location_code, entry_number))
+        if image_path and os.path.exists(image_path):
+            st.image(image_path, caption="Relevant Case Image")
     else:
         st.error("No matching entry found. Please check the Location Code and Entry Number.")
 st.markdown("</div>", unsafe_allow_html=True)
