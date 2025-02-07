@@ -3,7 +3,7 @@ import pandas as pd
 import base64
 
 # Load the dataset from CSV
-file_path = "Complete_Case_Database.csv"
+file_path = "case_data.csv"
 case_data = pd.read_csv(file_path)
 
 # Set background image
