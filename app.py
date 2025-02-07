@@ -60,5 +60,9 @@ if st.button("Find Paragraph") and entry_number is not None:
     if not result.empty:
         st.subheader("Matching Paragraph")
         st.write(result.iloc[0]["Full Text"])
+        
+        # Display image for SW 15
+        if location_code == "SW" and entry_number == 15:
+            st.image("Screenshot 2025-02-07 090927.png", caption="Relevant Case Image")
     else:
         st.error("No matching entry found. Please check the Location Code and Entry Number.")
