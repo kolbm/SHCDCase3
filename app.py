@@ -39,12 +39,16 @@ st.markdown(
         }
         .stTextInput > div > div > input {
             font-size: 24px !important;
+            text-align: center;
         }
         .stButton > button {
-            font-size: 20px !important;
+            font-size: 24px !important;
             background-color: #8b4513;
             color: white;
-            border-radius: 5px;
+            border-radius: 10px;
+            width: 60px;
+            height: 60px;
+            text-align: center;
         }
         .stSelectbox > div > div {
             font-size: 24px !important;
@@ -52,6 +56,12 @@ st.markdown(
         .stSubheader {
             font-size: 30px !important;
             color: #4b2e1e;
+        }
+        .keypad-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
     </style>
     """,
@@ -83,15 +93,21 @@ def clear_entry_number():
     st.session_state.entry_number = ""
     st.rerun()
 
+# Keypad layout
 keypad_buttons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-cols = st.columns(5)
+st.markdown("<div class='keypad-container'>", unsafe_allow_html=True)
+cols = st.columns(3)
 for i, button in enumerate(keypad_buttons):
-    if cols[i % 5].button(button, key=f"btn_{button}"):
-        update_entry_number(button)
+    with cols[i % 3]:
+        if st.button(button, key=f"btn_{button}"):
+            update_entry_number(button)
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Clear button
+st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
 if st.button("Clear Entry Number"):
     clear_entry_number()
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Ensure the entry number is a valid integer
 try:
