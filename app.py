@@ -45,12 +45,18 @@ st.markdown(
         }
         .stButton > button {
             font-size: 24px !important;
-            background-color: #8b4513;
-            color: white;
             border-radius: 10px;
             width: 70px;
             height: 70px;
             text-align: center;
+        }
+        .stButton > button[data-testid="clear_button"] {
+            background-color: #d9534f !important; /* Red */
+            color: white !important;
+        }
+        .stButton > button[data-testid="find_paragraph_button"] {
+            background-color: #5cb85c !important; /* Green */
+            color: white !important;
         }
         .stSelectbox > div > div {
             font-size: 24px !important;
@@ -66,14 +72,6 @@ st.markdown(
             gap: 10px;
             max-width: 250px;
             margin: auto;
-        }
-        .large-button > button {
-            font-size: 28px !important;
-            width: 200px !important;
-            height: 70px !important;
-            background-color: #5a3212 !important;
-            color: white !important;
-            border-radius: 10px !important;
         }
     </style>
     """,
