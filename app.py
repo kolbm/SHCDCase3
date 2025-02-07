@@ -36,7 +36,13 @@ selected_code = st.selectbox("", code_options)
 # Text Input for Entry Number
 entry_number_image = "dd2411aafb9c0f03efad90819b680c8a.png"
 st.image(entry_number_image, use_container_width=False)
-entry_number = st.text_input("", "")
+entry_number = st.text_input("", "", key='entry_number', help='Enter the case entry number here.', label_visibility='collapsed')
+st.markdown("""<style>
+    div[data-baseweb="input"] > div {
+        font-size: 24px !important;
+        padding: 10px !important;
+    }
+</style>""", unsafe_allow_html=True)
 
 # Button to Retrieve Entry
 display_text = ""
