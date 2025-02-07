@@ -140,7 +140,7 @@ for row in keypad_buttons:
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Clear button
-st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True) 
 if st.button("Clear Entry Number", key="clear_button", help="Clear the entered number"):
     clear_entry_number()
 st.markdown("</div>", unsafe_allow_html=True)
