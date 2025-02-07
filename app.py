@@ -149,6 +149,15 @@ if st.button("Find Paragraph", key="find_paragraph_button", help="Retrieve the m
     result = df[(df["Location Code"] == location_code) & (df["Entry Number"] == entry_number)]
     
     if not result.empty:
+        # Display image for specific entries
+        image_mapping = {
+            ("SW", 15): "Screenshot 2025-02-07 090927.png",
+            ("NW", 35): "Screenshot 2025-02-07 141325.png"
+        }
+        image_path = image_mapping.get((location_code, entry_number))
+        if image_path and os.path.exists(image_path):
+            st.image(image_path, caption="Relevant Case Image")
+        
         # Display map images based on location code
         map_images = {
             "EC": "map_ec.jpg",
