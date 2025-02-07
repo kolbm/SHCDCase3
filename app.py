@@ -105,13 +105,15 @@ def clear_entry_number():
     st.rerun()
 
 # Keypad layout
-keypad_buttons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+keypad_buttons = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"], ["", "0", ""]]
 st.markdown("<div class='keypad-container'>", unsafe_allow_html=True)
 cols = st.columns(3)
-for i, button in enumerate(keypad_buttons):
-    with cols[i % 3]:
-        if st.button(button, key=f"btn_{button}"):
-            update_entry_number(button)
+for row in keypad_buttons:
+    for i, button in enumerate(row):
+        if button:
+            with cols[i]:
+                if st.button(button, key=f"btn_{button}"):
+                    update_entry_number(button)
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Clear button
