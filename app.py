@@ -9,6 +9,18 @@ def load_data():
 
 df = load_data()
 
+# Mapping location codes to detailed, context-based names
+location_mapping = {
+    "SE": "Kenward Olick's Residence & Surrounding Tenement",
+    "SW": "Societies Club - Langdale Pike's Gathering Place",
+    "NW": "Davenport's Law Office on Baker Street",
+    "WC": "Dr. Trevelyan's Home & Medical Practice",
+    "-": "Tower of London Vicinity - Dockside & Market",
+    "EC": "Customs House & St. Mary Church Courtyard"
+}
+
+df["Location"] = df["Location Code"].map(location_mapping)
+
 # Extract unique location codes for the dropdown menu
 location_codes = sorted(df["Location Code"].unique())
 
