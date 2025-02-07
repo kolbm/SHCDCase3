@@ -60,6 +60,7 @@ st.markdown(
             font-size: 24px !important;
             text-align: center;
             width: 80px !important;
+            color: white !important;
         }
         .stButton > button {
             font-size: 24px !important;
@@ -81,7 +82,7 @@ st.markdown(
         }
         .stSubheader {
             font-size: 30px !important;
-            color: #4b2e1e;
+            color: white !important;
         }
         .keypad-container {
             display: flex;
@@ -90,6 +91,11 @@ st.markdown(
             gap: 10px;
             max-width: 250px;
             margin: auto;
+        }
+        .narrative-text {
+            font-size: 22px;
+            font-family: 'Times New Roman';
+            color: white !important;
         }
     </style>
     """,
@@ -109,7 +115,7 @@ if "entry_number" not in st.session_state:
     st.session_state.entry_number = ""
 
 # Keypad entry number
-st.write("### Enter Entry Number")
+st.write("### <span style='color: white;'>Enter Entry Number</span>", unsafe_allow_html=True)
 entry_number_display = st.text_input("", st.session_state.entry_number, max_chars=2, key="entry_number_display", disabled=True)
 
 def update_entry_number(num):
@@ -152,10 +158,10 @@ if st.button("Find Paragraph", key="find_paragraph_button", help="Retrieve the m
     
     if not result.empty:
         st.subheader("Matching Location")
-        st.write(f"<p style='font-size:24px; font-family: Times New Roman; font-weight: bold;'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
+        st.write(f"<p class='narrative-text'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
         
         st.subheader("Matching Paragraph")
-        st.write(f"<p style='font-size:22px; font-family: Times New Roman;'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
+        st.write(f"<p class='narrative-text'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
     else:
         st.error("No matching entry found. Please check the Location Code and Entry Number.")
 st.markdown("</div>", unsafe_allow_html=True)
