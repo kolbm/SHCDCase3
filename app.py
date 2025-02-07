@@ -30,7 +30,8 @@ st.markdown(
     """
     <style>
         body {
-            background-color: #f5f5dc;
+            background-image: url('https://cdn.midjourney.com/214710dc-9ce4-4c9f-8903-7388a8755311/0_0.png');
+            background-size: cover;
             font-family: 'Times New Roman', serif;
         }
         .stTitle {
