@@ -40,14 +40,15 @@ st.markdown(
         .stTextInput > div > div > input {
             font-size: 24px !important;
             text-align: center;
+            width: 80px !important;
         }
         .stButton > button {
             font-size: 24px !important;
             background-color: #8b4513;
             color: white;
             border-radius: 10px;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             text-align: center;
         }
         .stSelectbox > div > div {
@@ -62,6 +63,8 @@ st.markdown(
             justify-content: center;
             flex-wrap: wrap;
             gap: 10px;
+            max-width: 250px;
+            margin: auto;
         }
     </style>
     """,
