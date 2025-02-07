@@ -22,17 +22,22 @@ location_code = st.selectbox("Location Code", location_codes)
 
 # Keypad entry number
 st.write("### Enter Entry Number")
-entry_number = st.text_input("", "", max_chars=2)
+entry_number = st.text_input("", "", max_chars=2, key="entry_number")
+
+def update_entry_number(num):
+    current_value = st.session_state.entry_number
+    if len(current_value) < 2:
+        st.session_state.entry_number = current_value + num
 
 keypad_buttons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 cols = st.columns(5)
 for i, button in enumerate(keypad_buttons):
-    if cols[i % 5].button(button):
-        entry_number += button
+    if cols[i % 5].button(button, key=f"btn_{button}"):
+        update_entry_number(button)
 
 # Ensure the entry number is a valid integer
 try:
-    entry_number = int(entry_number) if entry_number else None
+    entry_number = int(st.session_state.entry_number) if st.session_state.entry_number else None
 except ValueError:
     entry_number = None
 
