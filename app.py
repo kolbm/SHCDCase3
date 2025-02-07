@@ -51,16 +51,17 @@ if os.path.exists(background_image_path):
 st.markdown(
     """
     <style>
+        .stTitle, .stMarkdown, .stSubheader, .stTextInput > div > div > input, .narrative-text {
+            color: white !important;
+        }
         .stTitle {
             font-size: 40px !important;
-            color: #4b2e1e;
             text-align: center;
         }
         .stTextInput > div > div > input {
             font-size: 24px !important;
             text-align: center;
             width: 80px !important;
-            color: white !important;
         }
         .stButton > button {
             font-size: 24px !important;
@@ -80,10 +81,6 @@ st.markdown(
         .stSelectbox > div > div {
             font-size: 24px !important;
         }
-        .stSubheader {
-            font-size: 30px !important;
-            color: white !important;
-        }
         .keypad-container {
             display: flex;
             justify-content: center;
@@ -91,11 +88,6 @@ st.markdown(
             gap: 10px;
             max-width: 250px;
             margin: auto;
-        }
-        .narrative-text {
-            font-size: 22px;
-            font-family: 'Times New Roman';
-            color: white !important;
         }
     </style>
     """,
@@ -140,7 +132,7 @@ for row in keypad_buttons:
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Clear button
-st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True) 
+st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
 if st.button("Clear Entry Number", key="clear_button", help="Clear the entered number"):
     clear_entry_number()
 st.markdown("</div>", unsafe_allow_html=True)
