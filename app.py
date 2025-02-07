@@ -19,10 +19,25 @@ st.write("Enter a Location Code and Entry Number to retrieve the corresponding p
 
 # User input fields
 location_code = st.selectbox("Location Code", location_codes)
-entry_number = st.number_input("Entry Number", min_value=0, step=1, format="%d")
+
+# Keypad entry number
+st.write("### Enter Entry Number")
+entry_number = st.text_input("", "", max_chars=2)
+
+keypad_buttons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+cols = st.columns(5)
+for i, button in enumerate(keypad_buttons):
+    if cols[i % 5].button(button):
+        entry_number += button
+
+# Ensure the entry number is a valid integer
+try:
+    entry_number = int(entry_number) if entry_number else None
+except ValueError:
+    entry_number = None
 
 # Search for the corresponding paragraph
-if st.button("Find Paragraph"):
+if st.button("Find Paragraph") and entry_number is not None:
     result = df[(df["Location Code"] == location_code) & (df["Entry Number"] == entry_number)]
     
     if not result.empty:
