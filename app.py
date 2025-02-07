@@ -1,76 +1,39 @@
-import os
-import sqlite3
+import streamlit as st
 import pandas as pd
 
-print("🚀 Script started...")  # Force debug message
+# Load the database
+file_path = "/mnt/data/case_data.csv"
 
-# List available files in current directory and /mnt/data
-print("📂 Current Directory Files:", os.listdir("."))
-if os.path.exists("/mnt/data"):
-    print("📂 /mnt/data Files:", os.listdir("/mnt/data"))
-
-# Possible locations for the file
-possible_paths = ["./case_data.csv", "/mnt/data/case_data.csv"]
-
-# Find the correct file path
-csv_file = None
-for path in possible_paths:
-    if os.path.exists(path):
-        csv_file = path
-        print(f"✅ Found file: {csv_file}")  # Confirm file found
-        break
-
-if not csv_file:
-    print("❌ Error: case_data.csv not found in any expected location.")
-    exit(1)
-
+# Try to read the file
 try:
-    print("📊 Loading CSV file...")
-    df = pd.read_csv(csv_file, encoding='utf-8')
-    print(f"✅ CSV loaded with {len(df)} entries.")
-except UnicodeDecodeError:
-    print("⚠️ UnicodeDecodeError! Retrying with Latin-1 encoding.")
-    df = pd.read_csv(csv_file, encoding='latin1')
+    df = pd.read_csv(file_path, encoding='utf-8')
+    
+    # Ensure correct column names
+    expected_columns = ["Location Code", "Entry Number", "Locations", "Text"]
+    df.columns = expected_columns
+    
+    # Streamlit App
+    st.title("Sherlock Holmes Case Database")
+    st.write("Select a location code and enter an encounter number to retrieve case details.")
 
-# Ensure required columns exist
-required_columns = ["Location Code", "Entry Number", "Location", "Full Text"]
-missing_columns = [col for col in required_columns if col not in df.columns]
-if missing_columns:
-    print(f"❌ Missing columns: {missing_columns}")
-    exit(1)
+    # Dropdown for Location Code
+    location_codes = df["Location Code"].unique()
+    selected_location = st.selectbox("Select Location Code:", location_codes)
 
-# SQLite database file
-db_file = "./case_data.db"
+    # Input for Entry Number
+    entry_number = st.number_input("Enter Encounter Number:", min_value=1, step=1)
 
-print(f"🔄 Connecting to SQLite database: {db_file}...")
-conn = sqlite3.connect(db_file)
-cursor = conn.cursor()
+    # Retrieve and display result
+    result = df[(df["Location Code"] == selected_location) & (df["Entry Number"] == entry_number)]
+    
+    if not result.empty:
+        st.subheader("Case Details")
+        st.write(f"**Location:** {result.iloc[0]['Locations']}")
+        st.write(f"**Entry Text:** {result.iloc[0]['Text']}")
+    else:
+        st.warning("No matching case found. Please check your inputs.")
 
-# Create table
-print("🛠️ Creating table if it doesn't exist...")
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS CaseEntries (
-        Location_Code TEXT,
-        Entry_Number INTEGER,
-        Location TEXT,
-        Full_Text TEXT
-    )
-''')
-
-# Clear existing data (optional)
-print("🧹 Clearing old data...")
-cursor.execute("DELETE FROM CaseEntries")
-
-# Insert new data
-print(f"⬆️ Inserting {len(df)} records into database...")
-for _, row in df.iterrows():
-    cursor.execute('''
-        INSERT INTO CaseEntries (Location_Code, Entry_Number, Location, Full_Text)
-        VALUES (?, ?, ?, ?)
-    ''', (row['Location Code'], row['Entry Number'], row['Location'], row['Full Text']))
-
-# Commit and close
-conn.commit()
-conn.close()
-
-print("✅ Database updated successfully!")
+except FileNotFoundError:
+    st.error("The database file was not found. Please ensure the file is correctly uploaded.")
+except Exception as e:
+    st.error(f"An error occurred: {e}")
