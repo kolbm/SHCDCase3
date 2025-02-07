@@ -21,7 +21,7 @@ def set_bg_from_url(url):
     )
 
 # Apply background image
-set_bg_from_url("https://wallpapers.com/images/featured/old-paper-w3ydso7e9qtan8er.jpg")
+set_bg_from_url("https://media.istockphoto.com/id/1471298765/photo/white-recycled-craft-paper-texture-as-background-grey-paper-texture-material-old-vintage-page.jpg?s=612x612&w=0&k=20&c=VzQl7FU63reqNI5bqX99pDqgtr5A04RBXXDWYvGvFhY=")
 
 # Streamlit UI
 image_path = "7e3642ea39f283b64a5c40a18c963a5c.png"
