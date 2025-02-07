@@ -112,6 +112,10 @@ if st.button("Find Paragraph") and entry_number is not None:
         
         # Display image for SW 15
         if location_code == "SW" and entry_number == 15:
-            st.image("Screenshot 2025-02-07 090927.png", caption="Relevant Case Image")
+            st.image("Screenshot_2025-02-07 090927.png", caption="Relevant Case Image")
+        
+        # Display image for NW 35
+        if location_code == "NW" and entry_number == 35:
+            st.image("Screenshot 2025-02-07 141325.png", caption="Relevant Case Image")
     else:
         st.error("No matching entry found. Please check the Location Code and Entry Number.")
