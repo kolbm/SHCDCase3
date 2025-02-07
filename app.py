@@ -51,6 +51,9 @@ if st.button("Retrieve Entry"):
         entry_number = int(entry_number)
         entry = case_data[(case_data["Code"] == selected_code) & (case_data["Number"] == entry_number)]
         if not entry.empty:
+            if selected_code == 'SW' and entry_number == 15:
+                image_sw15 = "Screenshot 2025-02-07 090927.png"
+                st.image(image_sw15, use_container_width=True)
             location = entry.iloc[0]["Location"]
             full_text = entry.iloc[0]["Full Text"]
             display_text = f"**Location:** {location}\n\n**Details:** {full_text}"
