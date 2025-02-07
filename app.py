@@ -2,8 +2,8 @@ import os
 import sqlite3
 import pandas as pd
 
-# Define the file path
-csv_file = "/mnt/data/Complete_Case_Database.csv"
+# Define the correct file path
+csv_file = "/mnt/data/case_data.csv"
 
 # Check if the file exists before trying to read it
 if not os.path.exists(csv_file):
@@ -11,13 +11,13 @@ if not os.path.exists(csv_file):
     print(os.listdir("/mnt/data"))  # Print available files for debugging
 else:
     try:
-        # Try reading the CSV with utf-8 encoding
+        # Read the CSV file using UTF-8 encoding
         df = pd.read_csv(csv_file, encoding='utf-8')
     except UnicodeDecodeError:
         # If UTF-8 fails, fall back to Latin-1 encoding
         df = pd.read_csv(csv_file, encoding='latin1')
 
-    # Define database file
+    # Define SQLite database file
     db_file = "/mnt/data/case_data.db"
 
     # Connect to SQLite database
