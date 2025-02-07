@@ -1,65 +1,45 @@
-import streamlit as st
+import sqlite3
 import pandas as pd
-import base64
 
-# Load the dataset from CSV
-file_path = "case_data.csv"
-case_data = pd.read_csv(file_path)
+# Load the corrected CSV file with explicit encoding
+csv_file = "/mnt/data/Complete_Case_Database.csv"
 
-# Set background image
-def set_bg_from_url(url):
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url({url});
-            background-size: cover;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
+try:
+    # Try UTF-8 encoding first
+    df = pd.read_csv(csv_file, encoding='utf-8')
+except UnicodeDecodeError:
+    # If UTF-8 fails, fall back to 'latin1' encoding
+    df = pd.read_csv(csv_file, encoding='latin1')
+
+# Database file
+db_file = "/mnt/data/case_data.db"
+
+# Connect to SQLite database
+conn = sqlite3.connect(db_file)
+cursor = conn.cursor()
+
+# Create the table if it does not exist
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS CaseEntries (
+        Location_Code TEXT,
+        Entry_Number INTEGER,
+        Location TEXT,
+        Full_Text TEXT
     )
+''')
 
-# Apply background image
-set_bg_from_url("https://media.istockphoto.com/id/1471298765/photo/white-recycled-craft-paper-texture-as-background-grey-paper-texture-material-old-vintage-page.jpg?s=612x612&w=0&k=20&c=VzQl7FU63reqNI5bqX99pDqgtr5A04RBXXDWYvGvFhY=")
+# Clear existing data (optional)
+cursor.execute("DELETE FROM CaseEntries")
 
-# Streamlit UI
-image_path = "7e3642ea39f283b64a5c40a18c963a5c.png"
-st.image(image_path, use_container_width=True)
+# Insert data into the table
+for _, row in df.iterrows():
+    cursor.execute('''
+        INSERT INTO CaseEntries (Location_Code, Entry_Number, Location, Full_Text)
+        VALUES (?, ?, ?, ?)
+    ''', (row['Location Code'], row['Entry Number'], row['Location'], row['Full Text']))
 
-# Dropdown for Code Selection
-location_code_image = "dc1b539d62ee4bea2a607f393f276191.png"
-st.image(location_code_image, use_container_width=False)
-code_options = case_data["Code"].unique()
-selected_code = st.selectbox("", code_options)
+# Commit and close the connection
+conn.commit()
+conn.close()
 
-# Text Input for Entry Number
-entry_number_image = "dd2411aafb9c0f03efad90819b680c8a.png"
-st.image(entry_number_image, use_container_width=False)
-entry_number = st.text_input("", "", key='entry_number', help='Enter the case entry number here.', label_visibility='collapsed')
-st.markdown("""<style>
-    div[data-baseweb="input"] > div {
-        font-size: 24px !important;
-        padding: 10px !important;
-    }
-</style>""", unsafe_allow_html=True)
-
-# Button to Retrieve Entry
-display_text = ""
-if st.button("Retrieve Entry"):
-    if entry_number.isdigit():
-        entry_number = int(entry_number)
-        entry = case_data[(case_data["Code"] == selected_code) & (case_data["Number"] == entry_number)]
-        if not entry.empty:
-            if selected_code == 'SW' and entry_number == 15:
-                image_sw15 = "Screenshot 2025-02-07 090927.png"
-                st.image(image_sw15, use_container_width=True)
-            location = entry.iloc[0]["Location"]
-            full_text = entry.iloc[0]["Full Text"]
-            display_text = f"**Location:** {location}\n\n**Details:** {full_text}"
-        else:
-            display_text = "No entry found for the selected code and number."
-    else:
-        display_text = "Please enter a valid numeric entry number."
-
-st.markdown(display_text)
+print("Database updated successfully!")
