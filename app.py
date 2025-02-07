@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Load the database
-file_path = "/mnt/data/case_data.csv"
+file_path = "case_data.csv"
 
 # Try to read the file
 try:
