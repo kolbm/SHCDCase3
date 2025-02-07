@@ -37,9 +37,11 @@ if os.path.exists(background_image_path):
     base64_bg = get_base64_image(background_image_path)
     background_css = f"""
     <style>
-        body {{
+        .stApp {{
             background-image: url("data:image/png;base64,{base64_bg}");
             background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }}
     </style>
     """
