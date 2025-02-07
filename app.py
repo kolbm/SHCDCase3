@@ -12,7 +12,41 @@ df = load_data()
 # Extract unique location codes for the dropdown menu
 location_codes = sorted(df["Location Code"].unique())
 
-# Streamlit UI
+# Streamlit UI Styling
+st.markdown(
+    """
+    <style>
+        body {
+            background-color: #f5f5dc;
+            font-family: 'Times New Roman', serif;
+        }
+        .stTitle {
+            font-size: 40px !important;
+            color: #4b2e1e;
+            text-align: center;
+        }
+        .stTextInput > div > div > input {
+            font-size: 24px !important;
+        }
+        .stButton > button {
+            font-size: 20px !important;
+            background-color: #8b4513;
+            color: white;
+            border-radius: 5px;
+        }
+        .stSelectbox > div > div {
+            font-size: 24px !important;
+        }
+        .stSubheader {
+            font-size: 30px !important;
+            color: #4b2e1e;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Title
 st.title("Case File Paragraph Lookup")
 
 st.write("Enter a Location Code and Entry Number to retrieve the corresponding paragraph.")
@@ -59,7 +93,7 @@ if st.button("Find Paragraph") and entry_number is not None:
     
     if not result.empty:
         st.subheader("Matching Paragraph")
-        st.write(result.iloc[0]["Full Text"])
+        st.write(f"<p style='font-size:22px; font-family: Times New Roman;'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
         
         # Display image for SW 15
         if location_code == "SW" and entry_number == 15:
