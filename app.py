@@ -128,7 +128,7 @@ for row in keypad_buttons:
         if button:
             with cols[i]:
                 if st.button(button, key=f"btn_{button}"):
-                    update_entry_number(button)
+                    update_entry_number(button) 
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Clear button
