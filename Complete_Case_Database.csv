@@ -1,0 +1,58 @@
+Code,Number,Location,Full Text
+EC,13,Tower of London,Cab driver provides little useful information on Kenward Olick but hints at his shady connections.
+EC,19,St. Mary Church,"Church stands near the customs administration, a notable landmark but not directly relevant to the investigation."
+EC,26,Aberdeen Navigation Company,"Company confirms that Frances and Loretta Nolan inherited equal shares, but Loretta sold hers."
+EC,30,Ellis' Office,Mr. Ellis is out of the country on assignment in Europe and unavailable for weeks.
+EC,35,Scotland Yard,Detective Quintin Hogg believes the Clarendon murder case is open-and-shut.
+EC,36,Old Bailey Prison,"Frances Nolan, in custody, describes memory loss and missing time."
+EC,38,Bart’s Hospital,Forensic expert confirms that Guy Clarendon was shot at very close range with a small-caliber pistol.
+EC,52,Raven and Rat Tavern,"Porky Shinwell recalls Clarendon’s gambling debts and criminal ties, mentioning dealings with Kilgore and Leach."
+EC,68,Gould & Sons Pharmacy,"The pharmacy is closed; a sign redirects customers to Squire & Sons, known for leniency with narcotics."
+NW,1,Davenport Residence,Housekeeper informs investigators that Mr. Davenport is at his office.
+NW,12,Dr. Mason’s Home,Dr. Mason's landlady is chatty but confirms he is at his office.
+NW,18,Parsons & Son Toy Shoppe,"Toy shopkeeper presents a miniature hansom cab, hinting at a case connection."
+NW,29,Wilfrid Robarts’ Home,Wilfrid Robarts' neighbor distracts Wiggins from investigation.
+NW,32,Taylor’s Pharmacy,A pharmacist confirms Dr. Trevelyan rarely visits their store.
+NW,35,Royal Italian Circus,Circus ringmaster recounts tightrope walker’s suspicious fall.
+NW,38,Mr. Bailijun’s Office,"Mr. Bailijun is unavailable for an interview, his assistant informs us."
+NW,42,221B Baker Street,"Holmes suggests verifying Frances Nolan's version of events, suspecting an external influence on her actions."
+NW,72,Taylor’s Pharmacy,Taylor’s Pharmacy maintains a strict reputation and does not dispense strong narcotics.
+NW,95,Hyde Park,"Investigators search Hyde Park for clues about Frances Nolan’s blackout, finding no definitive evidence."
+SE,15,Kenward Olick’s Residence,"Kenward Olick’s widow refuses to talk to investigators. Neighbors also remain silent, providing no information on Olick’s murder."
+SE,16,Penthouse Place & Kennington Park Road,Wiggins learns that Calvin Leach is a dealer in stolen goods but denies knowing Clarendon. Leach appears suspicious when Clarendon is mentioned.
+SE,21,Claude Kilgore’s Residence,"Claude Kilgore denies knowing Calvin Leach, contradicting previous accounts. His smooth demeanor suggests he is withholding information."
+SE,24,Mr. Paige’s Rental Office,"Mr. Paige mistakenly believes Wiggins is there to rent property. He rushes them through the process, ignoring any attempts at questioning."
+SE,85,Unnamed Pharmacy,"Pharmacist refuses to provide information about narcotics, suggesting another establishment, Gould & Sons, which has a more lenient reputation."
+SW,2,Societies Club,"Langdale Pike discusses the 'Terrible Twins,' Guy Clarendon and Loretta Nolan, known for their reckless behavior and financial troubles."
+SW,5,London Library,"Library provides background on the Mesmer-Braid Institute, originally an asylum. Hypnosis is discussed as a possible factor in the case."
+SW,8,Diogenes Club,Mycroft Holmes suspects Moriarty’s involvement in the murder of the cabbie with the Roman coins but not in the Clarendon case.
+SW,12,Hardinge Residence,"Mr. Hardinge reports the burglary of his wife’s emerald bracelet. No other items were taken, suggesting a targeted theft."
+SW,13,Scotland Yard,Lestrade believes Frances Nolan is guilty due to direct evidence: she was found with a smoking pistol in the same room as Clarendon’s body.
+SW,15,Halliday’s Private Hotel,"Hotel staff describe Clarendon’s visitors: a large, scarred man and a stylish woman with a deep laugh. Frances Nolan was found over Clarendon’s body."
+SW,19,Dr. Trevelyan’s Office,Dr. Trevelyan confirms Frances Nolan’s quiet nature and memory lapses. He dined with her the night before the murder.
+SW,21,Loretta Nolan’s Residence,"Loretta Nolan appears unconcerned about Clarendon’s death and Frances’ arrest. She is seen engaging in bizarre behavior, dressed in Arabian-style clothing."
+SW,22,Forensic Lab,Forensic examination finds gunshot residue and wine stains on Clarendon’s body. The shot was fired at very close range.
+SW,24,Nancy Judd’s Home,"Nancy Judd reports the theft of a family heirloom pendant, hidden inside a shoe. The burglar knew exactly where to look."
+SW,25,Bessie Dearth’s Home,Bessie Dearth recounts how her hidden jewelry was stolen. The thief went directly to a disguised box that looked like a book.
+SW,27,Bradford Lewin’s Residence,Bradford Lewin reports the theft of ruby earrings. No signs of forced entry or search suggest an inside job or highly skilled burglar.
+SW,30,Leeds Residence,Sir Sanford Leeds states his wife’s tiara was stolen without disturbance. Lady Leeds has been hospitalized since the theft.
+SW,31,Clarendon Residence,Sir Francis Clarendon disowns his son and recalls a suspicious man watching the house before Guy Clarendon was found dead.
+SW,35,Buckingham Palace,Buckingham Palace reception confirms no unusual incidents. No disturbances were reported on the night of the murder.
+SW,39,Otis Richmond’s Residence,Otis Richmond is unbothered by the burglary but acknowledges the sentimental loss of others.
+SW,48,Cornelius Oldwine’s Estate,"Cornelius Oldwine recounts Loretta Nolan’s reckless behavior, including an incident where she dived into a fountain in March."
+SW,50,Roger Baker’s Residence,Roger Baker initially suspected his servants in the burglary but later ruled them out when similar crimes occurred elsewhere.
+SW,57,St. George’s Hospital,Lady Leeds' doctor confirms her distress over the stolen tiara. She remains too frail to speak to investigators.
+SW,63,Olympia Theatre,A hypnotist at the Olympia explains hypnosis and confirms that a subject under hypnosis cannot be forced to act against their morals.
+SW,87,Keene & Ashwell Pharmacy,"Pharmacist at Keene & Ashwell states they only carry mild sedatives, suggesting Squire & Sons for stronger drugs."
+WC,4,Dr. Trevelyan’s Home,Trevelyan’s servant shoos away a cat and confirms the doctor is at his office.
+WC,5,Central Carriage Stables,"Cab stable confirms murdered cabbie was Kenward Olick, who mostly worked near the Tower."
+WC,13,Hiram Davenport’s Office,Davenport handled the Nolan sisters’ inheritance and confirms their financial status.
+WC,14,Scotland Yard Records,Police records show complaints against Guy Clarendon and Loretta Nolan but no formal arrests.
+WC,17,Somerset House,"Somerset House confirms Frances Nolan’s will favors her sister, with Dr. Trevelyan as guardian if incapacitated."
+WC,22,Cox’s Bank,"Bank records show irregular deposits for Clarendon, suggesting recent financial trouble."
+WC,29,Dr. Mason’s Office,"Dr. Mason is puzzled by Frances Nolan’s blackouts, unable to find a medical cause."
+WC,34,Gerald Locke’s Home,"Gerald Locke offers little new information, only stating his disbelief in Frances’ guilt."
+WC,37,Wilfrid Robarts’ Office,"Wilfrid Robarts considers taking Frances Nolan’s defense case, waiting to assess her directly."
+WC,38,British Museum,"Expert states Roman coins are common and not rare, making their presence on the cabbie not unusual."
+WC,46,Nolan Residence,"Frances’ maid describes the night before the murder, recalling her leaving early the next morning."
+WC,66,Squire & Sons Pharmacy,Pharmacy employee refuses to discuss narcotics openly but hints at another location with fewer restrictions.
