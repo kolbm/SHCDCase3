@@ -24,7 +24,8 @@ def set_bg_from_url(url):
 set_bg_from_url("https://wallpapers.com/images/featured/old-paper-w3ydso7e9qtan8er.jpg")
 
 # Streamlit UI
-st.title("Case Lookup Application")
+image_path = "7e3642ea39f283b64a5c40a18c963a5c.png"
+st.image(image_path, use_column_width=True)
 
 # Dropdown for Code Selection
 code_options = case_data["Code"].unique()
