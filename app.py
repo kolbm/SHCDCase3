@@ -2,25 +2,30 @@ import os
 import sqlite3
 import pandas as pd
 
-# Define the correct file path
-csv_file = "/mnt/data/case_data.csv"
+# Possible locations for the file
+possible_paths = ["./case_data.csv", "/mnt/data/case_data.csv"]
 
-# Check if the file exists before trying to read it
-if not os.path.exists(csv_file):
-    print(f"Error: The file '{csv_file}' was not found. Listing available files in /mnt/data:")
-    print(os.listdir("/mnt/data"))  # Print available files for debugging
+# Find the correct file path
+csv_file = None
+for path in possible_paths:
+    if os.path.exists(path):
+        csv_file = path
+        break
+
+if not csv_file:
+    print("Error: case_data.csv not found in any expected location.")
+    print("Available files:", os.listdir("."))  # Debugging
 else:
     try:
-        # Read the CSV file using UTF-8 encoding
+        # Read the CSV file
         df = pd.read_csv(csv_file, encoding='utf-8')
     except UnicodeDecodeError:
-        # If UTF-8 fails, fall back to Latin-1 encoding
         df = pd.read_csv(csv_file, encoding='latin1')
 
-    # Define SQLite database file
-    db_file = "/mnt/data/case_data.db"
+    # SQLite database file
+    db_file = "./case_data.db"
 
-    # Connect to SQLite database
+    # Connect to SQLite
     conn = sqlite3.connect(db_file)
     cursor = conn.cursor()
 
@@ -37,14 +42,14 @@ else:
     # Clear existing data (optional)
     cursor.execute("DELETE FROM CaseEntries")
 
-    # Insert data into the table
+    # Insert data
     for _, row in df.iterrows():
         cursor.execute('''
             INSERT INTO CaseEntries (Location_Code, Entry_Number, Location, Full_Text)
             VALUES (?, ?, ?, ?)
         ''', (row['Location Code'], row['Entry Number'], row['Location'], row['Full Text']))
 
-    # Commit and close the connection
+    # Commit and close
     conn.commit()
     conn.close()
 
