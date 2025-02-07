@@ -28,8 +28,10 @@ image_path = "7e3642ea39f283b64a5c40a18c963a5c.png"
 st.image(image_path, use_column_width=True)
 
 # Dropdown for Code Selection
+location_code_image = "dc1b539d62ee4bea2a607f393f276191.png"
+st.image(location_code_image, use_column_width=False)
 code_options = case_data["Code"].unique()
-selected_code = st.selectbox("Select Entry Code:", code_options)
+selected_code = st.selectbox("", code_options)
 
 # Text Input for Entry Number
 entry_number = st.text_input("Enter Entry Number:", "")
