@@ -1,39 +1,29 @@
 import streamlit as st
 import pandas as pd
 
-# Load the database
-file_path = "case_data.csv"
+# Load the CSV file
+@st.cache_data
+def load_data():
+    file_path = "case_data.csv"  # Ensure this file is available in Streamlit deployment
+    return pd.read_csv(file_path, encoding="latin1")
 
-# Try to read the file
-try:
-    df = pd.read_csv(file_path, encoding='utf-8')
-    
-    # Ensure correct column names
-    expected_columns = ["Location Code", "Entry Number", "Locations", "Text"]
-    df.columns = expected_columns
-    
-    # Streamlit App
-    st.title("Sherlock Holmes Case Database")
-    st.write("Select a location code and enter an encounter number to retrieve case details.")
+df = load_data()
 
-    # Dropdown for Location Code
-    location_codes = df["Location Code"].unique()
-    selected_location = st.selectbox("Select Location Code:", location_codes)
+# Streamlit UI
+st.title("Case File Paragraph Lookup")
 
-    # Input for Entry Number
-    entry_number = st.number_input("Enter Encounter Number:", min_value=1, step=1)
+st.write("Enter a Location Code and Entry Number to retrieve the corresponding paragraph.")
 
-    # Retrieve and display result
-    result = df[(df["Location Code"] == selected_location) & (df["Entry Number"] == entry_number)]
+# User input fields
+location_code = st.text_input("Location Code", "")
+entry_number = st.number_input("Entry Number", min_value=0, step=1, format="%d")
+
+# Search for the corresponding paragraph
+if st.button("Find Paragraph"):
+    result = df[(df["Location Code"] == location_code) & (df["Entry Number"] == entry_number)]
     
     if not result.empty:
-        st.subheader("Case Details")
-        st.write(f"**Location:** {result.iloc[0]['Locations']}")
-        st.write(f"**Entry Text:** {result.iloc[0]['Text']}")
+        st.subheader("Matching Paragraph")
+        st.write(result.iloc[0]["Full Text"])
     else:
-        st.warning("No matching case found. Please check your inputs.")
-
-except FileNotFoundError:
-    st.error("The database file was not found. Please ensure the file is correctly uploaded.")
-except Exception as e:
-    st.error(f"An error occurred: {e}")
+        st.error("No matching entry found. Please check the Location Code and Entry Number.")
