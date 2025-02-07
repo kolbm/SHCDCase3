@@ -66,6 +66,14 @@ st.markdown(
             max-width: 250px;
             margin: auto;
         }
+        .large-button > button {
+            font-size: 28px !important;
+            width: 200px !important;
+            height: 70px !important;
+            background-color: #5a3212 !important;
+            color: white !important;
+            border-radius: 10px !important;
+        }
     </style>
     """,
     unsafe_allow_html=True
@@ -108,7 +116,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 
 # Clear button
 st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-if st.button("Clear Entry Number"):
+if st.button("Clear Entry Number", key="clear_button", help="Clear the entered number"):
     clear_entry_number()
 st.markdown("</div>", unsafe_allow_html=True)
 
@@ -119,7 +127,8 @@ except ValueError:
     entry_number = None
 
 # Search for the corresponding paragraph
-if st.button("Find Paragraph") and entry_number is not None:
+st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+if st.button("Find Paragraph", key="find_paragraph_button", help="Retrieve the matching case paragraph") and entry_number is not None:
     result = df[(df["Location Code"] == location_code) & (df["Entry Number"] == entry_number)]
     
     if not result.empty:
@@ -138,3 +147,4 @@ if st.button("Find Paragraph") and entry_number is not None:
             st.image("Screenshot 2025-02-07 141325.png", caption="Relevant Case Image")
     else:
         st.error("No matching entry found. Please check the Location Code and Entry Number.")
+st.markdown("</div>", unsafe_allow_html=True)
