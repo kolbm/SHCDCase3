@@ -20,20 +20,32 @@ st.write("Enter a Location Code and Entry Number to retrieve the corresponding p
 # User input fields
 location_code = st.selectbox("Location Code", location_codes)
 
+# Initialize session state for entry_number if not set
+if "entry_number" not in st.session_state:
+    st.session_state.entry_number = ""
+
 # Keypad entry number
 st.write("### Enter Entry Number")
-entry_number = st.text_input("", "", max_chars=2, key="entry_number")
+entry_number_display = st.text_input("", st.session_state.entry_number, max_chars=2, key="entry_number_display", disabled=True)
 
 def update_entry_number(num):
-    current_value = st.session_state.entry_number
-    if len(current_value) < 2:
-        st.session_state.entry_number = current_value + num
+    if len(st.session_state.entry_number) < 2:
+        st.session_state.entry_number += num
+        st.rerun()
+
+def clear_entry_number():
+    st.session_state.entry_number = ""
+    st.rerun()
 
 keypad_buttons = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 cols = st.columns(5)
 for i, button in enumerate(keypad_buttons):
     if cols[i % 5].button(button, key=f"btn_{button}"):
         update_entry_number(button)
+
+# Clear button
+if st.button("Clear Entry Number"):
+    clear_entry_number()
 
 # Ensure the entry number is a valid integer
 try:
