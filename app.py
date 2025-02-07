@@ -161,7 +161,7 @@ if st.button("Find Paragraph", key="find_paragraph_button", help="Retrieve the m
         st.write(f"<p class='narrative-text'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
         
         st.subheader("Matching Paragraph")
-        st.write(f"<p class='narrative-text'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
+        st.write(f"<p class='narrative-text'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True) 
     else:
         st.error("No matching entry found. Please check the Location Code and Entry Number.")
 st.markdown("</div>", unsafe_allow_html=True)
