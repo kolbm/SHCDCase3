@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import os
 
 # Load the CSV file
 @st.cache_data
@@ -140,13 +141,15 @@ if st.button("Find Paragraph", key="find_paragraph_button", help="Retrieve the m
         st.subheader("Matching Paragraph")
         st.write(f"<p style='font-size:22px; font-family: Times New Roman;'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
         
-        # Display image for SW 15
-        if location_code == "SW" and entry_number == 15:
-            st.image("Screenshot_2025-02-07 090927.png", caption="Relevant Case Image")
+        # Display image for SW 15 if the file exists
+        sw15_image = "Screenshot 2025-02-07 090927.png"
+        if location_code == "SW" and entry_number == 15 and os.path.exists(sw15_image):
+            st.image(sw15_image, caption="Relevant Case Image")
         
-        # Display image for NW 35
-        if location_code == "NW" and entry_number == 35:
-            st.image("Screenshot 2025-02-07 141325.png", caption="Relevant Case Image")
+        # Display image for NW 35 if the file exists
+        nw35_image = "Screenshot 2025-02-07 141325.png"
+        if location_code == "NW" and entry_number == 35 and os.path.exists(nw35_image):
+            st.image(nw35_image, caption="Relevant Case Image")
     else:
         st.error("No matching entry found. Please check the Location Code and Entry Number.")
 st.markdown("</div>", unsafe_allow_html=True)
