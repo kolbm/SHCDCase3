@@ -92,6 +92,9 @@ if st.button("Find Paragraph") and entry_number is not None:
     result = df[(df["Location Code"] == location_code) & (df["Entry Number"] == entry_number)]
     
     if not result.empty:
+        st.subheader("Matching Location")
+        st.write(f"<p style='font-size:24px; font-family: Times New Roman; font-weight: bold;'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
+        
         st.subheader("Matching Paragraph")
         st.write(f"<p style='font-size:22px; font-family: Times New Roman;'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
         
