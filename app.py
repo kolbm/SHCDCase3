@@ -63,7 +63,7 @@ background_css = """
 st.markdown(background_css, unsafe_allow_html=True)
 
 # Title
-st.title("Case File Paragraph Lookup")
+st.image('https://github.com/kolbm/SHCDCase3/blob/311b027517d52865369e55402c0e1e2f97/title_picture.png', use_column_width=True)
 
 st.write("Enter a Location Code and Entry Number to retrieve the corresponding paragraph.")
 
