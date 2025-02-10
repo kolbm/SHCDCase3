@@ -1,4 +1,4 @@
-background-image: url('background.jpg'); background-size: cover; background-position: center; background-attachment: fixed; /* CSS styling should be within a Python string */
+background-image: url('https://github.com/kolbm/SHCDCase3/blob/118c15ef7094cb3de21bc462925b5df67f9cae10/background.jpg'); background-size: cover; background-position: center; background-attachment: fixed; /* CSS styling should be within a Python string */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
