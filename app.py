@@ -51,44 +51,41 @@ if os.path.exists(background_image_path):
 st.markdown(
     """
     <style>
-        .stTitle, .stMarkdown, .stSubheader, .stTextInput > div > div > input, .narrative-text {
+        .stTitle, .stMarkdown, .stSubheader, .stTextInput > div > div > input, .narrative-text, .stSelectbox > div > div, .stError {{
             color: white !important;
-        }
-        .stTitle {
+        }}
+        .stTitle {{
             font-size: 40px !important;
             text-align: center;
-        }
-        .stTextInput > div > div > input {
+        }}
+        .stTextInput > div > div > input {{
             font-size: 24px !important;
             text-align: center;
             width: 80px !important;
-        }
-        .stButton > button {
+        }}
+        .stButton > button {{
             font-size: 24px !important;
             border-radius: 10px;
             width: 70px;
             height: 70px;
             text-align: center;
-        }
-        .stButton > button[data-testid="clear_button"] {
+        }}
+        .stButton > button[data-testid="clear_button"] {{
             background-color: #d9534f !important; /* Red */
             color: white !important;
-        }
-        .stButton > button[data-testid="find_paragraph_button"] {
+        }}
+        .stButton > button[data-testid="find_paragraph_button"] {{
             background-color: #5cb85c !important; /* Green */
             color: white !important;
-        }
-        .stSelectbox > div > div {
-            font-size: 24px !important;
-        }
-        .keypad-container {
+        }}
+        .keypad-container {{
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 10px;
             max-width: 250px;
             margin: auto;
-        }
+        }}
     </style>
     """,
     unsafe_allow_html=True
