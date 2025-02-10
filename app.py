@@ -1,55 +1,78 @@
-background-image: url('https://raw.githubusercontent.com/kolbm/SHCDCase3/main/background.jpg'); background-size: cover; background-position: center; background-attachment: fixed; /* CSS styling should be within a Python string */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }}
-    </style>
-    """
-    st.markdown(background_css, unsafe_allow_html=True)
+import streamlit as st
+import pandas as pd
+import os
+
+# Load the CSV file
+@st.cache_data
+def load_data():
+    file_path = "case_data.csv"
+    return pd.read_csv(file_path, encoding="latin1")
+
+df = load_data()
+
+# Mapping location codes to detailed, context-based names
+location_mapping = {
+    "SE": "Kenward Olick's Residence & Surrounding Tenement",
+    "SW": "Societies Club - Langdale Pike's Gathering Place",
+    "NW": "Davenport's Law Office on Baker Street",
+    "WC": "Dr. Trevelyan's Home & Medical Practice",
+    "-": "Tower of London Vicinity - Dockside & Market",
+    "EC": "Customs House & St. Mary Church Courtyard"
+}
+
+df["Location"] = df["Location Code"].map(location_mapping)
+
+# Extract unique location codes for the dropdown menu
+location_codes = sorted(df["Location Code"].unique())
 
 # Streamlit UI Styling
-st.markdown(
-    """
-    <style>
-        .stTitle, .stMarkdown, .stSubheader, .stTextInput > div > div > input, .narrative-text, .stSelectbox > div > div, .stError {{
-            color: white !important;
-        }}
-        .stTitle {{
-            font-size: 40px !important;
-            text-align: center;
-        }}
-        .stTextInput > div > div > input {{
-            font-size: 24px !important;
-            text-align: center;
-            width: 80px !important;
-        }}
-        .stButton > button {{
-            font-size: 24px !important;
-            border-radius: 10px;
-            width: 70px;
-            height: 70px;
-            text-align: center;
-        }}
-        .stButton > button[data-testid="clear_button"] {{
-            background-color: #d9534f !important; /* Red */
-            color: white !important;
-        }}
-        .stButton > button[data-testid="find_paragraph_button"] {{
-            background-color: #5cb85c !important; /* Green */
-            color: white !important;
-        }}
-        .keypad-container {{
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            max-width: 250px;
-            margin: auto;
-        }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+background_css = """
+<style>
+    .stApp {
+        background-image: url('https://raw.githubusercontent.com/kolbm/SHCDCase3/main/background.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    .stTitle, .stMarkdown, .stSubheader, .stTextInput > div > div > input, .narrative-text, .stSelectbox > div > div, .stError {
+        color: white !important;
+    }
+    .stTitle {
+        font-size: 40px !important;
+        text-align: center;
+    }
+    .stTextInput > div > div > input {
+        font-size: 24px !important;
+        text-align: center;
+        width: 80px !important;
+    }
+    .stButton > button {
+        font-size: 24px !important;
+        border-radius: 10px;
+        width: 70px;
+        height: 70px;
+        text-align: center;
+    }
+    .stButton > button[data-testid="clear_button"] {
+        background-color: #d9534f !important;
+        color: white !important;
+    }
+    .stButton > button[data-testid="find_paragraph_button"] {
+        background-color: #5cb85c !important;
+        color: white !important;
+    }
+    .keypad-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        max-width: 250px;
+        margin: auto;
+    }
+</style>
+"""
+
+st.markdown(background_css, unsafe_allow_html=True)
 
 # Title
 st.title("Case File Paragraph Lookup")
