@@ -35,7 +35,7 @@ background_css = """
         background-attachment: fixed;
     }
     .stTitle, .stMarkdown, .stSubheader, .stTextInput > div > div > input, .narrative-text, .stSelectbox > div > div, .stError {
-        color: white !important;
+        color: black !important;
     }
     .stTitle {
         font-size: 40px !important;
