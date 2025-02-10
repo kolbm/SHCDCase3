@@ -1,44 +1,4 @@
-import streamlit as st
-import pandas as pd
-import os
-import base64
-
-# Load the CSV file
-@st.cache_data
-def load_data():
-    file_path = "case_data.csv"  # Ensure this file is available in Streamlit deployment
-    return pd.read_csv(file_path, encoding="latin1")
-
-df = load_data()
-
-# Mapping location codes to detailed, context-based names
-location_mapping = {
-    "SE": "Kenward Olick's Residence & Surrounding Tenement",
-    "SW": "Societies Club - Langdale Pike's Gathering Place",
-    "NW": "Davenport's Law Office on Baker Street",
-    "WC": "Dr. Trevelyan's Home & Medical Practice",
-    "-": "Tower of London Vicinity - Dockside & Market",
-    "EC": "Customs House & St. Mary Church Courtyard"
-}
-
-df["Location"] = df["Location Code"].map(location_mapping)
-
-# Extract unique location codes for the dropdown menu
-location_codes = sorted(df["Location Code"].unique())
-
-# Function to encode an image as base64
-@st.cache_data
-def get_base64_image(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode()
-
-background_image_path = "wordoftheoracle_A_Victorian__Holmsian_scene_appearing_on_wall_214710dc-9ce4-4c9f-8903-7388a8755311_0.png"
-if os.path.exists(background_image_path):
-    base64_bg = get_base64_image(background_image_path)
-    background_css = f"""
-    <style>
-        .stApp {{
-            background-image: url("data:image/png;base64,{base64_bg}");
+background-image: url('https://cdn.vectorstock.com/i/500p/86/55/vintage-grunge-newspaper-texture-background-vector-20998655.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
