@@ -1,4 +1,4 @@
-background-image: url('background.jpg'); background-size: cover; background-position: center; background-attachment: fixed;
+background-image: url('background.jpg'); background-size: cover; background-position: center; background-attachment: fixed; /* CSS styling should be within a Python string */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
