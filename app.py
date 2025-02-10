@@ -34,7 +34,7 @@ background_css = """
         background-position: center;
         background-attachment: fixed;
     }
-    .stTitle, .stMarkdown, .stSubheader, .stTextInput > div > div > input, .narrative-text, .stSelectbox > div > div { font-size: 24px !important;, .stError {
+    .stTitle, .stMarkdown, .stSubheader, .stTextInput > div > div > input, .narrative-text, .stSelectbox > div > div {
         color: black !important; font-family: 'Courier New', Courier, monospace !important;
     }
     .stTitle {
@@ -49,12 +49,18 @@ background_css = """
     .stButton > button {
         font-size: 24px !important;
         border-radius: 10px;
-        width: 70px;
-        height: 70px;
-        text-align: center;
-     background-color: black !important; color: white !important;
-    .stButton > button[data-testid="clear_button"] { background-color: red !important; color: white !important; font-weight: bold !important; font-family: 'Courier New', Courier, monospace !important; }
-    .stButton > button[data-testid="find_paragraph_button"] { background-color: green !important; color: white !important; font-weight: bold !important; font-family: 'Courier New', Courier, monospace !important; }
+        font-family: 'Courier New', Courier, monospace !important;
+    }
+    .stButton > button[data-testid="clear_button"] {
+        background-color: red !important;
+        color: white !important;
+        font-weight: bold !important;
+    }
+    .stButton > button[data-testid="find_paragraph_button"] {
+        background-color: green !important;
+        color: white !important;
+        font-weight: bold !important;
+    }
     .keypad-container {
         display: flex;
         justify-content: center;
@@ -62,6 +68,15 @@ background_css = """
         gap: 10px;
         max-width: 250px;
         margin: auto;
+    }
+    .keypad-button {
+        background-color: silver !important;
+        color: black !important;
+        font-weight: bold !important;
+        font-family: 'Courier New', Courier, monospace !important;
+        width: 70px;
+        height: 70px;
+        border-radius: 5px;
     }
 </style>
 """
@@ -102,7 +117,7 @@ for row in keypad_buttons:
     for i, button in enumerate(row):
         if button:
             with cols[i]:
-                if st.button(button, key=f"btn_{button}"):
+                if st.button(button, key=f"btn_{button}", help=f"Enter {button}"):
                     update_entry_number(button)
 st.markdown("</div>", unsafe_allow_html=True)
 
