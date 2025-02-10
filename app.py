@@ -50,9 +50,18 @@ background_css = """
         font-size: 24px !important;
         border-radius: 10px;
         font-family: 'Courier New', Courier, monospace !important;
+        padding: 10px 20px;
     }
-    .stButton > button[data-testid="clear_button"] { background-color: red !important; color: white !important; font-weight: bold !important; font-family: 'Courier New', Courier, monospace !important; border: 2px solid black; }
-    .stButton > button[data-testid="find_paragraph_button"] { background-color: green !important; color: white !important; font-weight: bold !important; font-family: 'Courier New', Courier, monospace !important; border: 2px solid black; }
+    .stButton.clear-button {
+        background-color: red !important;
+        color: white !important;
+        font-weight: bold !important;
+    }
+    .stButton.find-button {
+        background-color: green !important;
+        color: white !important;
+        font-weight: bold !important;
+    }
     .keypad-container {
         display: flex;
         justify-content: center;
@@ -61,7 +70,6 @@ background_css = """
         max-width: 250px;
         margin: auto;
     }
-    .keypad-button { background-color: silver !important; color: black !important; font-weight: bold !important; font-family: 'Courier New', Courier, monospace !important; width: 70px; height: 70px; border-radius: 5px; border: 2px solid black; }
 </style>
 """
 
@@ -96,20 +104,18 @@ def clear_entry_number():
 # Keypad layout
 keypad_buttons = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"], ["", "0", ""]]
 st.markdown("<div class='keypad-container'>", unsafe_allow_html=True)
-cols = st.columns(3)
 for row in keypad_buttons:
+    cols = st.columns(3)
     for i, button in enumerate(row):
         if button:
             with cols[i]:
-                if st.markdown(f"<button style='background-color: silver; color: black; font-weight: bold; font-family: Courier New, monospace; width: 70px; height: 70px; border-radius: 5px; border: 2px solid black;'>{button}</button>", unsafe_allow_html=True):
+                if st.button(button, key=f"btn_{button}"):
                     update_entry_number(button)
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Clear button
-st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-if st.markdown("<button style='background-color: red; color: white; font-weight: bold; font-family: Courier New, monospace; padding: 10px 20px; border: 2px solid black;'>Clear Entry Number</button>", unsafe_allow_html=True):
+if st.button("Clear Entry Number", key="clear_button"):
     clear_entry_number()
-st.markdown("</div>", unsafe_allow_html=True)
 
 # Ensure the entry number is a valid integer
 try:
@@ -118,8 +124,7 @@ except ValueError:
     entry_number = None
 
 # Search for the corresponding paragraph
-st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-if st.markdown("<button style='background-color: green; color: white; font-weight: bold; font-family: Courier New, monospace; padding: 10px 20px; border: 2px solid black;'>Find Paragraph</button>", unsafe_allow_html=True) and entry_number is not None:
+if st.button("Find Paragraph", key="find_paragraph_button") and entry_number is not None:
     result = df[(df["Location Code"] == location_code) & (df["Entry Number"] == entry_number)]
     
     if not result.empty:
@@ -151,4 +156,3 @@ if st.markdown("<button style='background-color: green; color: white; font-weigh
         st.write(f"<p class='narrative-text'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
     else:
         st.error("No matching entry found. Please check the Location Code and Entry Number.")
-st.markdown("</div>", unsafe_allow_html=True)
