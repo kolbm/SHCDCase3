@@ -52,7 +52,7 @@ background_css = """
         width: 70px;
         height: 70px;
         text-align: center;
-    }
+     background-color: black !important; color: white !important;
     .stButton > button[data-testid="clear_button"] {
         background-color: #d9534f !important;
         color: white !important;
