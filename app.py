@@ -51,16 +51,8 @@ background_css = """
         border-radius: 10px;
         font-family: 'Courier New', Courier, monospace !important;
     }
-    .stButton > button[data-testid="clear_button"] {
-        background-color: red !important;
-        color: white !important;
-        font-weight: bold !important;
-    }
-    .stButton > button[data-testid="find_paragraph_button"] {
-        background-color: green !important;
-        color: white !important;
-        font-weight: bold !important;
-    }
+    .stButton > button[data-testid="clear_button"] { background-color: red !important; color: white !important; font-weight: bold !important; font-family: 'Courier New', Courier, monospace !important; border: 2px solid black; }
+    .stButton > button[data-testid="find_paragraph_button"] { background-color: green !important; color: white !important; font-weight: bold !important; font-family: 'Courier New', Courier, monospace !important; border: 2px solid black; }
     .keypad-container {
         display: flex;
         justify-content: center;
@@ -69,15 +61,7 @@ background_css = """
         max-width: 250px;
         margin: auto;
     }
-    .keypad-button {
-        background-color: silver !important;
-        color: black !important;
-        font-weight: bold !important;
-        font-family: 'Courier New', Courier, monospace !important;
-        width: 70px;
-        height: 70px;
-        border-radius: 5px;
-    }
+    .keypad-button { background-color: silver !important; color: black !important; font-weight: bold !important; font-family: 'Courier New', Courier, monospace !important; width: 70px; height: 70px; border-radius: 5px; border: 2px solid black; }
 </style>
 """
 
