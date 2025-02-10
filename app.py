@@ -101,13 +101,13 @@ for row in keypad_buttons:
     for i, button in enumerate(row):
         if button:
             with cols[i]:
-                if st.button(button, key=f"btn_{button}", help=f"Enter {button}"):
+                if st.markdown(f"<button style='background-color: silver; color: black; font-weight: bold; font-family: Courier New, monospace; width: 70px; height: 70px; border-radius: 5px; border: 2px solid black;'>{button}</button>", unsafe_allow_html=True):
                     update_entry_number(button)
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Clear button
 st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-if st.button("Clear Entry Number", key="clear_button", help="Clear the entered number"):
+if st.markdown("<button style='background-color: red; color: white; font-weight: bold; font-family: Courier New, monospace; padding: 10px 20px; border: 2px solid black;'>Clear Entry Number</button>", unsafe_allow_html=True):
     clear_entry_number()
 st.markdown("</div>", unsafe_allow_html=True)
 
@@ -119,7 +119,7 @@ except ValueError:
 
 # Search for the corresponding paragraph
 st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-if st.button("Find Paragraph", key="find_paragraph_button", help="Retrieve the matching case paragraph") and entry_number is not None:
+if st.markdown("<button style='background-color: green; color: white; font-weight: bold; font-family: Courier New, monospace; padding: 10px 20px; border: 2px solid black;'>Find Paragraph</button>", unsafe_allow_html=True) and entry_number is not None:
     result = df[(df["Location Code"] == location_code) & (df["Entry Number"] == entry_number)]
     
     if not result.empty:
