@@ -34,7 +34,7 @@ background_css = """
         background-position: center;
         background-attachment: fixed;
     }
-    .stTitle, .stMarkdown, .stSubheader, .stTextInput > div > div > input, .narrative-text, .stSelectbox > div > div, .stError {
+    .stTitle, .stMarkdown, .stSubheader, .stTextInput > div > div > input, .narrative-text, .stSelectbox > div > div { font-size: 24px !important;, .stError {
         color: black !important; font-family: 'Courier New', Courier, monospace !important;
     }
     .stTitle {
@@ -74,7 +74,8 @@ st.title("Case File Paragraph Lookup")
 st.write("Enter a Location Code and Entry Number to retrieve the corresponding paragraph.")
 
 # User input fields
-location_code = st.selectbox("Location Code", location_codes)
+st.write("### <span style='color: black;'>Location Code</span>", unsafe_allow_html=True)
+location_code = st.selectbox("", location_codes)
 
 # Initialize session state for entry_number if not set
 if "entry_number" not in st.session_state:
