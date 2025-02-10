@@ -1,4 +1,4 @@
-background-image: url('https://cdn.vectorstock.com/i/500p/86/55/vintage-grunge-newspaper-texture-background-vector-20998655.jpg');
+background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
