@@ -53,14 +53,8 @@ background_css = """
         height: 70px;
         text-align: center;
      background-color: black !important; color: white !important;
-    .stButton > button[data-testid="clear_button"] {
-        background-color: #d9534f !important;
-        color: white !important;
-    }
-    .stButton > button[data-testid="find_paragraph_button"] {
-        background-color: #5cb85c !important;
-        color: white !important;
-    }
+    .stButton > button[data-testid="clear_button"] { background-color: red !important; color: white !important; }
+    .stButton > button[data-testid="find_paragraph_button"] { background-color: green !important; color: white !important; }
     .keypad-container {
         display: flex;
         justify-content: center;
