@@ -46,22 +46,9 @@ background_css = """
         text-align: center;
         width: 80px !important;
     }
-    .stButton > button {
-        font-size: 24px !important;
-        border-radius: 10px;
-        font-family: 'Courier New', Courier, monospace !important;
-        padding: 10px 20px;
-    }
-    .stButton.clear-button {
-        background-color: red !important;
-        color: white !important;
-        font-weight: bold !important;
-    }
-    .stButton.find-button {
-        background-color: green !important;
-        color: white !important;
-        font-weight: bold !important;
-    }
+    .stButton > button { font-size: 24px !important; border-radius: 10px; font-family: 'Courier New', Courier, monospace !important; padding: 10px 20px; background-color: silver !important; color: black !important; font-weight: bold; border: 2px solid black; }
+    .stButton > button[data-testid="clear_button"] { background-color: red !important; color: white !important; font-weight: bold !important; border: 2px solid black; }
+    .stButton > button[data-testid="find_paragraph_button"] { background-color: green !important; color: white !important; font-weight: bold !important; border: 2px solid black; }
     .keypad-container {
         display: flex;
         justify-content: center;
