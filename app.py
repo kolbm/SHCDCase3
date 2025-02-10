@@ -87,7 +87,7 @@ if "entry_number" not in st.session_state:
     st.session_state.entry_number = ""
 
 # Keypad entry number
-st.write("### <span style='color: white;'>Enter Entry Number</span>", unsafe_allow_html=True)
+st.write("### <span style='color: black;'>Enter Entry Number</span>", unsafe_allow_html=True)
 entry_number_display = st.text_input("", st.session_state.entry_number, max_chars=2, key="entry_number_display", disabled=True)
 
 def update_entry_number(num):
