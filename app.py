@@ -1,4 +1,4 @@
-background-image: url('./background.jpg');
+background-image: url('background.jpg'); background-size: cover; background-position: center; background-attachment: fixed;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
