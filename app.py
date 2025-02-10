@@ -152,3 +152,4 @@ if st.markdown("<button style='background-color: green; color: white; font-weigh
     else:
         st.error("No matching entry found. Please check the Location Code and Entry Number.")
 st.markdown("</div>", unsafe_allow_html=True)
+ 
