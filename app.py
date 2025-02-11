@@ -1,4 +1,30 @@
-if 'video_id' in locals() and 'start_time' in locals() and 'end_time' in locals():
+import streamlit as st
+import pandas as pd
+
+# Define the video_id, start_time, and end_time mappings
+video_mappings = {
+    ("SW", 31): ("M5lSUGeaJz0", 6 * 60 + 45, 8 * 60 + 20),
+    ("SW", 15): ("M5lSUGeaJz0", 8 * 60 + 28, 11 * 60 + 56),
+    ("EC", 36): ("M5lSUGeaJz0", 12 * 60 + 12, 15 * 60 + 40),
+    # Add more entries as needed
+}
+
+# Load the real data from the CSV URL
+@st.cache
+def load_data():
+    url = "https://raw.githubusercontent.com/kolbm/SHCDCase3/refs/heads/main/Complete_Case_Database.csv"
+    return pd.read_csv(url)
+
+df = load_data()
+
+# User inputs for Location Code and Entry Number
+location_code = st.selectbox("Select Location Code", df['Location Code'].unique())
+entry_number = st.number_input("Enter Entry Number", min_value=1, max_value=100, step=1)
+
+# Retrieve video details based on user input
+key = (location_code, entry_number)
+if key in video_mappings:
+    video_id, start_time, end_time = video_mappings[key]
     st.markdown(f"""
         <div id="player"></div>
         <script>
@@ -33,34 +59,13 @@ if 'video_id' in locals() and 'start_time' in locals() and 'end_time' in locals(
           }}
         </script>
     """, unsafe_allow_html=True)
+else:
+    st.warning("No video found for the selected Location Code and Entry Number.")
 
-import streamlit as st  # Ensure Streamlit is imported
-import pandas as pd  # Ensure pandas is imported
-
-import streamlit as st
-import pandas as pd
-
-@st.cache
-def load_data():
-    return pd.read_csv('your_file.csv')  # Replace 'your_file.csv' with your actual data file
-
-df = load_data()
-
-location_code = st.selectbox("Select Location Code", df['Location Code'].unique())
-entry_number = st.number_input("Enter Entry Number", min_value=1, max_value=100, step=1)
-
-result = df[(df['Location Code'] == location_code) & (df['Entry Number'] == entry_number)])
+# Query based on user input for the matching entry
+result = df[(df['Location Code'] == location_code) & (df['Entry Number'] == entry_number)]
 
 if not result.empty:
-    st.subheader("Matching Location")
-    st.write(f"<p class='narrative-text'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
-
-    st.subheader("Matching Paragraph")
-    st.write(f"<p class='narrative-text'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
-else:
-    st.error("No matching entry found. Please check the Location Code and Entry Number.")
-
-if result is not None and isinstance(result, pd.DataFrame) and not result.empty:
     st.subheader("Matching Location")
     st.write(f"<p class='narrative-text'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
 
