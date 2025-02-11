@@ -32,6 +32,12 @@ st.markdown(f"""
       }}
     </script>
 """, unsafe_allow_html=True)
+
+st.subheader("Matching Location")
+st.write(f"<p class='narrative-text'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
+
+st.subheader("Matching Paragraph")
+st.write(f"<p class='narrative-text'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
         
         st.subheader("Matching Location")
         st.write(f"<p class='narrative-text'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
