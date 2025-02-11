@@ -18,9 +18,10 @@ def load_data():
 df = load_data()
 
 # Display the column names to help debug the KeyError
-st.write(df.columns)
+st.write("Columns in the DataFrame:", df.columns)
 
 # User inputs for Location Code and Entry Number
+# Modify this part after identifying the correct column name from the output above
 location_code = st.selectbox("Select Location Code", df['Location Code'].unique())  # Adjust column name if necessary
 entry_number = st.number_input("Enter Entry Number", min_value=1, max_value=100, step=1)
 
