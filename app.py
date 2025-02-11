@@ -124,14 +124,23 @@ if st.button("Find Paragraph", key="find_paragraph_button") and entry_number is 
     result = df[(df["Location Code"] == location_code) & (df["Entry Number"] == entry_number)]
     
     if not result.empty:
+        # Display image for specific entries
+        image_mapping = {
+            ("SW", 15): "Screenshot_2025-02-07_090927.png",
+            ("NW", 35): "Screenshot_2025-02-07_141325.png"
+        }
+        image_path = image_mapping.get((location_code, entry_number))
+        if image_path:
+            st.image(image_path, caption="Relevant Evidence")
+        
         # Display video for the matching entry if available
         video_info = video_mapping.get((location_code, entry_number))
         if video_info:
             video_id, start_time, end_time = video_info
             st.markdown(f"""
                 <iframe width="560" height="315" 
-                src="https://www.youtube.com/embed/{video_id}?start={start_time}&end={end_time}&controls=0" 
-                frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+                src="https://www.youtube.com/embed/{video_id}?start={start_time}&autoplay=1&controls=0" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             """, unsafe_allow_html=True)
         
         st.subheader("Matching Location")
