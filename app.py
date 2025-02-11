@@ -1,4 +1,5 @@
-<div id="player"></div>
+st.markdown(f"""
+    <div id="player"></div>
     <script>
       var tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
