@@ -35,6 +35,9 @@ if 'video_id' in locals() and 'start_time' in locals() and 'end_time' in locals(
     """, unsafe_allow_html=True)
 
 if 'df' not in locals():
+    import pandas as pd  # Ensure pandas is imported
+
+if 'df' not in locals():
     df = pd.DataFrame({
         'Location Code': ['SW', 'SW'],
         'Entry Number': [31, 15],
@@ -43,7 +46,10 @@ if 'df' not in locals():
     })
 
 query = "Location Code == 'SW' and Entry Number == 31"  # Example query condition
-result = df.query(query) if 'df' in locals() else pd.DataFrame()  # Query the DataFrame safely
+if 'df' in locals() and not df.empty:
+    result = df.query(query)
+else:
+    result = pd.DataFrame()  # Query the DataFrame safely
 
 if result is not None and isinstance(result, pd.DataFrame) and not result.empty:
     st.subheader("Matching Location")
