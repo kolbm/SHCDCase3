@@ -139,7 +139,7 @@ if st.button("Find Paragraph", key="find_paragraph_button") and entry_number is 
             video_id, start_time, end_time = video_info
             st.markdown(f"""
                 <iframe width="560" height="315" 
-                src="https://www.youtube.com/embed/{video_id}?start={start_time}&autoplay=1&controls=0" 
+                src="https://www.youtube.com/embed/{video_id}?start={start_time}&autoplay=1&controls=0" id="ytplayer" 
                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             """, unsafe_allow_html=True)
         
