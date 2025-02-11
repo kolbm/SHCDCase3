@@ -10,15 +10,18 @@ video_mappings = {
 }
 
 # Load the real data from the CSV URL
-@st.cache
+@st.cache_data
 def load_data():
     url = "https://raw.githubusercontent.com/kolbm/SHCDCase3/refs/heads/main/Complete_Case_Database.csv"
     return pd.read_csv(url)
 
 df = load_data()
 
+# Display the column names to help debug the KeyError
+st.write(df.columns)
+
 # User inputs for Location Code and Entry Number
-location_code = st.selectbox("Select Location Code", df['Location Code'].unique())
+location_code = st.selectbox("Select Location Code", df['Location Code'].unique())  # Adjust column name if necessary
 entry_number = st.number_input("Enter Entry Number", min_value=1, max_value=100, step=1)
 
 # Retrieve video details based on user input
