@@ -175,7 +175,7 @@ if st.button("Find Paragraph", key="find_paragraph_button") and entry_number is 
                         var player = document.getElementById('ytplayer');
                         var endTime = {end_time};
                         var checkTime = setInterval(function() {
-                            if (player.currentTime >= endTime) {
+                            if (player.currentTime >= {{endTime}}) {
                                 player.pause();
                                 clearInterval(checkTime);
                             }
