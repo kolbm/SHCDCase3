@@ -58,7 +58,7 @@ df = load_data()
 location_code = st.selectbox("Select Location Code", df['Location Code'].unique())
 entry_number = st.number_input("Enter Entry Number", min_value=1, max_value=100, step=1)
 
-result = df[(df['Location Code'] == location_code) & (df['Entry Number'] == entry_number)])
+result = df[(df['Location Code'] == location_code) & (df['Entry Number'] == entry_number)]
 
 if not result.empty:
     st.subheader("Matching Location")
