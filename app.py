@@ -34,7 +34,7 @@ if 'video_id' in locals() and 'start_time' in locals() and 'end_time' in locals(
         </script>
     """, unsafe_allow_html=True)
 
-if 'result' in locals() and not result.empty:
+if 'result' in locals() and isinstance(result, pd.DataFrame) and not result.empty:
     st.subheader("Matching Location")
     st.write(f"<p class='narrative-text'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
 
