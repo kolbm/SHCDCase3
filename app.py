@@ -168,7 +168,38 @@ if st.button("Find Paragraph", key="find_paragraph_button") and entry_number is 
             video_id, start_time, end_time = video_info
             st.markdown(f"""
                 <div>
-                    ""<iframe width="560" height="315" src="https://www.youtube.com/embed/{video_id}?start={start_time}&autoplay=1&controls=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>""
+                    """"<div id="player"></div>
+<script>
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '315',
+      width: '560',
+      videoId: '{video_id}',
+      playerVars: { 'start': {start_time}, 'autoplay': 1, 'controls': 0 },
+      events: {
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING) {
+      var end_time = {end_time};
+      var interval = setInterval(function() {
+        if (player.getCurrentTime() >= end_time) {
+          player.pauseVideo();
+          clearInterval(interval);
+        }
+      }, 1000);
+    }
+  }
+</script>""""
                     
                 </div>
             """, unsafe_allow_html=True)
