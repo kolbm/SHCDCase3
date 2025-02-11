@@ -126,8 +126,8 @@ if st.button("Find Paragraph", key="find_paragraph_button") and entry_number is 
     if not result.empty:
         # Display image for specific entries
         image_mapping = {
-            ("SW", 15): "Screenshot_2025-02-07_090927.png",
-            ("NW", 35): "Screenshot_2025-02-07_141325.png"
+            ("SW", 15): "https://raw.githubusercontent.com/kolbm/SHCDCase3/refs/heads/main/Screenshot%202025-02-07%20090927.png",
+            ("NW", 35): "https://raw.githubusercontent.com/kolbm/SHCDCase3/refs/heads/main/Screenshot%202025-02-07%20141325.png"
         }
         image_path = image_mapping.get((location_code, entry_number))
         if image_path:
