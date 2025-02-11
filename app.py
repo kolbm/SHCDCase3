@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import os
+from streamlit_player import st_player
 
 # Load the CSV file
 @st.cache_data
@@ -110,31 +110,27 @@ try:
 except ValueError:
     entry_number = None
 
+# YouTube video mapping
+video_mapping = {
+    ("SW", 31): ("M5lSUGeaJz0", 405, 500),
+    ("SW", 15): ("M5lSUGeaJz0", 508, 716),
+    ("EC", 36): ("M5lSUGeaJz0", 732, 940),
+    ("EC", 52): ("M5lSUGeaJz0", 949, 1055)
+    # Add the rest of the mappings here...
+}
+
 # Search for the corresponding paragraph
 if st.button("Find Paragraph", key="find_paragraph_button") and entry_number is not None:
     result = df[(df["Location Code"] == location_code) & (df["Entry Number"] == entry_number)]
     
     if not result.empty:
-        # Display image for specific entries
-        image_mapping = {
-            ("SW", 15): "Screenshot 2025-02-07 090927.png",
-            ("NW", 35): "Screenshot 2025-02-07 141325.png"
-        }
-        image_path = image_mapping.get((location_code, entry_number))
-        if image_path and os.path.exists(image_path):
-            st.image(image_path, caption="Relevant Case Image")
-        
-        # Display map images based on location code
-        map_images = {
-            "EC": "map_ec.jpg",
-            "NW": "map_nw.jpg",
-            "SE": "map_se.jpg",
-            "SW": "map_sw.jpg",
-            "WC": "map_wc.jpg"
-        }
-        map_image = map_images.get(location_code)
-        if map_image and os.path.exists(map_image):
-            st.image(map_image, caption="Location Map")
+        # Display video for the matching entry if available
+        video_info = video_mapping.get((location_code, entry_number))
+        if video_info:
+            video_id, start_time, end_time = video_info
+            st.markdown(f"""
+                st.video(f"https://www.youtube.com/watch?v={video_id}")
+            """, unsafe_allow_html=True)
         
         st.subheader("Matching Location")
         st.write(f"<p class='narrative-text'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
