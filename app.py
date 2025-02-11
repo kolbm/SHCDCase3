@@ -41,5 +41,3 @@ if not result.empty:
     st.write(f"<p class='narrative-text'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
 else:
     st.error("No matching entry found. Please check the Location Code and Entry Number.")
-else:
-    st.error("No matching entry found. Please check the Location Code and Entry Number.")
