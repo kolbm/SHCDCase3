@@ -1,5 +1,4 @@
-st.markdown(f"""
-    <div id="player"></div>
+<div id="player"></div>
     <script>
       var tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
@@ -31,9 +30,7 @@ st.markdown(f"""
         }}
       }}
     </script>
-"", unsafe_allow_html=True)
-"""
-            """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
         
         st.subheader("Matching Location")
         st.write(f"<p class='narrative-text'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
