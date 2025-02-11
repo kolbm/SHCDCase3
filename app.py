@@ -37,22 +37,28 @@ if 'video_id' in locals() and 'start_time' in locals() and 'end_time' in locals(
 import streamlit as st  # Ensure Streamlit is imported
 import pandas as pd  # Ensure pandas is imported
 
-if 'df' not in locals():
-    import pandas as pd  # Ensure pandas is imported
+import streamlit as st
+import pandas as pd
 
-if 'df' not in locals():
-    df = pd.DataFrame({
-        'Location Code': ['SW', 'SW'],
-        'Entry Number': [31, 15],
-        'Location': ['Sample Location 1', 'Sample Location 2'],
-        'Full Text': ['This is a sample paragraph for Entry 31.', 'This is a sample paragraph for Entry 15.']
-    })
+@st.cache
+def load_data():
+    return pd.read_csv('your_file.csv')  # Replace 'your_file.csv' with your actual data file
 
-query = "`Location Code` == 'SW' and `Entry Number` == 31"  # Use backticks around column names
-if 'df' in locals() and not df.empty:
-    result = df[(df['Location Code'] == 'SW') & (df['Entry Number'] == 31)]
+df = load_data()
+
+location_code = st.selectbox("Select Location Code", df['Location Code'].unique())
+entry_number = st.number_input("Enter Entry Number", min_value=1, max_value=100, step=1)
+
+result = df[(df['Location Code'] == location_code) & (df['Entry Number'] == entry_number)])
+
+if not result.empty:
+    st.subheader("Matching Location")
+    st.write(f"<p class='narrative-text'>{result.iloc[0]['Location']}</p>", unsafe_allow_html=True)
+
+    st.subheader("Matching Paragraph")
+    st.write(f"<p class='narrative-text'>{result.iloc[0]['Full Text']}</p>", unsafe_allow_html=True)
 else:
-    result = pd.DataFrame()  # Query the DataFrame safely
+    st.error("No matching entry found. Please check the Location Code and Entry Number.")
 
 if result is not None and isinstance(result, pd.DataFrame) and not result.empty:
     st.subheader("Matching Location")
