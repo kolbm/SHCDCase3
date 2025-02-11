@@ -169,7 +169,7 @@ if st.button("Find Paragraph", key="find_paragraph_button") and entry_number is 
             st.markdown(f"""
                 <div>
                     <iframe width="560" height="315" 
-                    src="https://www.youtube.com/embed/{video_id}?start={start_time}&autoplay=1&controls=1" 
+                    src="https://www.youtube.com/embed/{video_id}?start={start_time}&autoplay=1&controls=0" 
                     frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     
                 </div>
