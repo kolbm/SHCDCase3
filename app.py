@@ -34,6 +34,9 @@ if 'video_id' in locals() and 'start_time' in locals() and 'end_time' in locals(
         </script>
     """, unsafe_allow_html=True)
 
+import streamlit as st  # Ensure Streamlit is imported
+import pandas as pd  # Ensure pandas is imported
+
 if 'df' not in locals():
     import pandas as pd  # Ensure pandas is imported
 
