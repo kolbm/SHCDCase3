@@ -34,6 +34,14 @@ if 'video_id' in locals() and 'start_time' in locals() and 'end_time' in locals(
         </script>
     """, unsafe_allow_html=True)
 
+if 'df' not in locals():
+    df = pd.DataFrame({
+        'Location Code': ['SW', 'SW'],
+        'Entry Number': [31, 15],
+        'Location': ['Sample Location 1', 'Sample Location 2'],
+        'Full Text': ['This is a sample paragraph for Entry 31.', 'This is a sample paragraph for Entry 15.']
+    })
+
 query = "Location Code == 'SW' and Entry Number == 31"  # Example query condition
 result = df.query(query) if 'df' in locals() else pd.DataFrame()  # Query the DataFrame safely
 
