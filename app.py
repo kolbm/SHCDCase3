@@ -142,7 +142,7 @@ video_mapping = {
     ("WC", 17): ("M5lSUGeaJz0", 2739, 2760),
     ("WC", 13): ("M5lSUGeaJz0", 2768, 2817),
     ("WC", 22): ("M5lSUGeaJz0", 2827, 2858),
-    ("EC", 26): ("M5lSUGeaJz0", 2885, 2897): ("M5lSUGeaJz0", 508, 716),
+    ("EC", 26): ("M5lSUGeaJz0", 2885, 2897),
     ("EC", 36): ("M5lSUGeaJz0", 732, 940),
     ("EC", 52): ("M5lSUGeaJz0", 949, 1055)
     # Add the rest of the mappings here...
