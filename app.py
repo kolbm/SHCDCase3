@@ -45,9 +45,9 @@ if 'df' not in locals():
         'Full Text': ['This is a sample paragraph for Entry 31.', 'This is a sample paragraph for Entry 15.']
     })
 
-query = "Location Code == 'SW' and Entry Number == 31"  # Example query condition
+query = "`Location Code` == 'SW' and `Entry Number` == 31"  # Use backticks around column names
 if 'df' in locals() and not df.empty:
-    result = df.query(query)
+    result = df[(df['Location Code'] == 'SW') & (df['Entry Number'] == 31)]
 else:
     result = pd.DataFrame()  # Query the DataFrame safely
 
