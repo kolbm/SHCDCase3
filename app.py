@@ -129,7 +129,9 @@ if st.button("Find Paragraph", key="find_paragraph_button") and entry_number is 
         if video_info:
             video_id, start_time, end_time = video_info
             st.markdown(f"""
-                st.video(f"https://www.youtube.com/watch?v={video_id}")
+                <iframe width="560" height="315" 
+                src="https://www.youtube.com/embed/{video_id}?start={start_time}&end={end_time}&controls=0" 
+                frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
             """, unsafe_allow_html=True)
         
         st.subheader("Matching Location")
