@@ -6,6 +6,10 @@ video_mappings = {
     ("SW", 31): ("M5lSUGeaJz0", 6 * 60 + 45, 8 * 60 + 20),
     ("SW", 15): ("M5lSUGeaJz0", 8 * 60 + 28, 11 * 60 + 56),
     ("EC", 36): ("M5lSUGeaJz0", 12 * 60 + 12, 15 * 60 + 40),
+    ("EC", 52): ("M5lSUGeaJz0", 15 * 60 + 49, 17 * 60 + 35),
+    ("SW", 19): ("M5lSUGeaJz0", 17 * 60 + 44, 19 * 60 + 16),
+    ("SW", 13): ("M5lSUGeaJz0", 25 * 60 + 8, 25 * 60 + 44),
+    ("EC", 30): ("M5lSUGeaJz0", 25 * 60 + 53, 26 * 60 + 1),
     # Add more entries as needed
 }
 
@@ -81,6 +85,21 @@ st.markdown("""
             font-family: 'Georgia', serif;
             font-size: 1.2em;
             color: #333;
+        }
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+        }
+        .stButton > button {
+            background-color: #0069d9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .stButton > button:hover {
+            background-color: #0056b3;
         }
     </style>
 """, unsafe_allow_html=True)
