@@ -1,14 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-# Define the video_id, start_time, and end_time mappings
-video_mappings = {
-    ("SW", 31): ("M5lSUGeaJz0", 6 * 60 + 45, 8 * 60 + 20),
-    ("SW", 15): ("M5lSUGeaJz0", 8 * 60 + 28, 11 * 60 + 56),
-    ("EC", 36): ("M5lSUGeaJz0", 12 * 60 + 12, 15 * 60 + 40),
-    # Add more entries as needed
-}
-
 # Load the real data from the CSV URL
 @st.cache_data
 def load_data():
@@ -17,13 +9,20 @@ def load_data():
 
 df = load_data()
 
-# Display the column names to help debug the KeyError
-st.write("Columns in the DataFrame:", df.columns)
+# Display the column names as a list to check for the correct name
+st.write("Columns in the DataFrame:", list(df.columns))
 
-# User inputs for Location Code and Entry Number
-# Modify this part after identifying the correct column name from the output above
-location_code = st.selectbox("Select Location Code", df['Location Code'].unique())  # Adjust column name if necessary
+# Once we know the exact column name, adjust the following line:
+location_code = st.selectbox("Select Location Code", df['Location Code'].unique())  # Adjust column name after checking
 entry_number = st.number_input("Enter Entry Number", min_value=1, max_value=100, step=1)
+
+# Define the video_id, start_time, and end_time mappings
+video_mappings = {
+    ("SW", 31): ("M5lSUGeaJz0", 6 * 60 + 45, 8 * 60 + 20),
+    ("SW", 15): ("M5lSUGeaJz0", 8 * 60 + 28, 11 * 60 + 56),
+    ("EC", 36): ("M5lSUGeaJz0", 12 * 60 + 12, 15 * 60 + 40),
+    # Add more entries as needed
+}
 
 # Retrieve video details based on user input
 key = (location_code, entry_number)
